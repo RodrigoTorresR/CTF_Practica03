@@ -1,0 +1,31 @@
+import psutil
+import sys
+#for proc in psutil.process_iter():
+#    print(proc.name(), proc.pid)
+
+#for proc in psutil.process_iter():
+#    if proc.name()=='chrome.exe':
+#        print('Chrome Detectado')
+        
+#for proc in psutil.process_iter():
+#    if proc.name().lower()=='chrome.exe':
+#        print('Chrome Detectado')
+def check_arguments():
+    if len(sys.argv)==1:
+        print('Este programa no funciona sin argumentos')
+        sys.exit(0)
+
+#target = sys.argv[1]
+
+def lock(target):
+    for proc in psutil.process_iter():
+        if proc.name().lower()==target.lower():
+            proc.kill()
+            print(f'{target} Detenido')
+#           print(f'{target} Detectado')
+        
+if __name__=='__main__':
+    check_arguments()
+    target=sys.argv[1]
+    lock(target)
+
